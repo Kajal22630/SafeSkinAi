@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafeSkin AI - Report History</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html"
+          ><i class="bi bi-shield-check"></i> SafeSkin AI</a
+        >
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="reports.html">Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="hero-section text-center text-white">
+      <h1>Medical Report History</h1>
+    </section>
+
+    <div class="container my-5">
+      <div class="card p-4 shadow-lg">
+        <h4 class="text-primary mb-4">
+          <i class="bi bi-clipboard2-data"></i> Generated Reports
+        </h4>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover align-middle">
+            <thead class="table-primary">
+              <tr>
+                <th>Report ID</th>
+                <th>Patient</th>
+                <th>Age</th>
+                <th>Doctor</th>
+                <th>Diagnosis</th>
+                <th>Confidence</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="historyTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-dark text-white pt-4 pb-3 mt-5">
+      <div class="container">
+        <div class="row text-center text-md-start">
+          <!-- Brand -->
+          <div class="col-md-4 mb-3">
+            <h5 class="fw-bold">
+              <i class="bi bi-shield-check"></i> SafeSkin AI
+            </h5>
+            <p class="small">
+              AI-Powered Skin Cancer Detection System using Deep Learning
+              Ensemble and Explainable AI.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="col-md-4 mb-3">
+            <h6 class="fw-semibold">Quick Links</h6>
+            <ul class="list-unstyled small">
+              <li>
+                <a href="index.html" class="text-white text-decoration-none"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a href="reports.html" class="text-white text-decoration-none"
+                  >Reports</a
+                >
+              </li>
+              <li>
+                <a href="about.html" class="text-white text-decoration-none"
+                  >About</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Developer -->
+          <div class="col-md-4 mb-3">
+            <h6 class="fw-semibold">Developed By</h6>
+            <p class="small mb-1">Mr. Sushant Sagar & Teams</p>
+            <p class="small">AI System Architect</p>
+          </div>
+        </div>
+
+        <hr class="border-light" />
+
+        <div class="text-center small">
+          © 2026 SafeSkin AI Diagnostic System. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

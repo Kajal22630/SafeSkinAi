@@ -1,0 +1,257 @@
+/* ================= GLOBAL ================= */
+
+body {
+  background: linear-gradient(135deg, #f4f8fb, #e9f2f9);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ================= HERO SECTION ================= */
+
+.hero-section {
+  background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+  padding: 60px 0;
+  animation: fadeIn 1s ease-in-out;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ================= CARD ================= */
+
+.card {
+  border-radius: 18px;
+  transition: 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ================= BUTTON EFFECT ================= */
+
+.btn-primary,
+.btn-success {
+  border-radius: 30px;
+  transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+}
+
+.btn-outline-primary:hover {
+  transform: translateY(-2px);
+}
+
+/* ================= PROGRESS BAR ================= */
+
+.progress {
+  border-radius: 50px;
+  background-color: #e9ecef;
+  overflow: hidden;
+}
+
+.progress-bar {
+  font-weight: bold;
+  font-size: 14px;
+  transition: width 1s ease-in-out;
+}
+
+/* ================= CONFIDENCE GLOW ================= */
+
+.high-risk-glow {
+  animation: glowPulse 2s infinite alternate;
+}
+
+@keyframes glowPulse {
+  from {
+    box-shadow: 0 0 15px rgba(220, 53, 69, 0.4);
+  }
+  to {
+    box-shadow: 0 0 35px rgba(220, 53, 69, 0.8);
+  }
+}
+
+/* ================= DIAGNOSIS COLORS ================= */
+
+.diagnosis-benign {
+  color: #198754;
+}
+
+.diagnosis-malignant {
+  color: #dc3545;
+}
+
+/* ========================================================= */
+/* 🔬 MEDICAL GRADCAM SPLIT VIEW (FINAL PROFESSIONAL FIX) */
+/* ========================================================= */
+
+/* Ensures both columns visually balanced */
+.result-row {
+  display: flex;
+  align-items: stretch;
+}
+
+/* Right viewer panel layout */
+.viewer-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ========================================================= */
+/* 🔬 PERFECT MEDICAL GRADCAM OVERLAY SLIDER */
+/* ========================================================= */
+
+/* ============================================
+   GRADCAM PROFESSIONAL OVERLAY COMPARISON
+============================================ */
+
+.img-compare-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 500px; /* Fixed medical viewport */
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #000;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* BOTH IMAGES SAME SIZE */
+.compare-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Always same dimension */
+  transition: transform 0.3s ease;
+}
+
+/* GRADCAM SITS ABOVE ORIGINAL */
+.img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%; /* Default 50% visible */
+  overflow: hidden;
+  transition: width 0.25s ease;
+  z-index: 5;
+}
+
+/* Slider Divider Line */
+.slider-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 3px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  transition: left 0.25s ease;
+}
+
+/* Invisible drag area */
+.compare-slider {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize;
+  z-index: 20;
+}
+
+/* Smooth Hover Zoom */
+.img-compare-wrapper:hover .compare-img {
+  transform: scale(1.02);
+}
+
+/* ================= SLIDERS BELOW IMAGE ================= */
+
+.viewer-controls {
+  max-width: 600px;
+  margin: 25px auto 0 auto;
+}
+
+.viewer-controls label {
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+.viewer-controls input[type="range"] {
+  width: 100%;
+}
+
+/* ================= HEATMAP TRANSITION ================= */
+
+#gradcamImage {
+  transition:
+    opacity 0.3s ease,
+    filter 0.3s ease;
+}
+
+/* ================= 3D SKIN CONTAINER ================= */
+
+#skin3dContainer {
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  margin: 40px auto;
+  border-radius: 18px;
+  background: #f8fbff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+/* ================= TABLE POLISH ================= */
+
+.table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table-hover tbody tr:hover {
+  background: #f1f9ff;
+  transition: 0.3s ease;
+}
+
+/* ================= FORM INPUT ================= */
+
+.form-control,
+.form-select {
+  border-radius: 12px;
+  transition: 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 15px rgba(13, 110, 253, 0.25);
+  border-color: #0d6efd;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  margin-top: 60px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 40px 0;
+  }
+
+  .img-compare-wrapper {
+    height: 350px;
+  }
+
+  #skin3dContainer {
+    height: 280px;
+  }
+}

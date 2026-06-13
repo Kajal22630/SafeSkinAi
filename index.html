@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafeSkin AI - Medical Diagnostic System</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#"
+          ><i class="bi bi-shield-check"></i> SafeSkin AI</a
+        >
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="reports.html">Reports</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-section text-center text-white">
+      <div class="container">
+        <h1 class="display-5 fw-bold">AI-Powered Skin Cancer Detection</h1>
+        <p class="lead">Deep Learning Ensemble + Explainable GradCAM</p>
+      </div>
+    </section>
+
+    <!-- FORM -->
+    <div class="container my-5">
+      <div class="card p-4 shadow-lg animate-fade">
+        <h4 class="text-primary fw-bold mb-4">
+          <i class="bi bi-person-vcard"></i> Patient Information
+        </h4>
+
+        <form id="predictForm" enctype="multipart/form-data">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label">Patient Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="patient_name"
+                required
+              />
+            </div>
+            <div class="col-md-2">
+              <label class="form-label">Age</label>
+              <input
+                type="number"
+                class="form-control"
+                id="age"
+                min="1"
+                max="120"
+                required
+              />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Gender</label>
+              <select class="form-select" id="gender" required>
+                <option value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Doctor Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="doctor_name"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <label class="form-label">Upload Dermoscopic Image</label>
+            <input
+              type="file"
+              class="form-control"
+              id="image"
+              accept="image/png,image/jpeg"
+              required
+            />
+          </div>
+
+          <div class="text-center mt-4">
+            <button
+              type="submit"
+              class="btn btn-primary btn-lg px-5 rounded-pill"
+            >
+              <i class="bi bi-cpu"></i> Analyze Skin Lesion
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="container my-5 d-none" id="resultContainer">
+      <div class="card p-4 shadow-lg">
+        <h4 class="text-success fw-bold mb-4">
+          <i class="bi bi-clipboard2-pulse"></i> AI Diagnostic Report
+        </h4>
+
+        <div class="row equal-height-row">
+          <!-- LEFT -->
+          <div class="col-md-6">
+            <p><strong>Report ID:</strong> <span id="reportID"></span></p>
+            <p><strong>Diagnosis:</strong> <span id="diagnosisText"></span></p>
+            <p><strong>Confidence:</strong></p>
+            <h2 id="confidenceText" class="text-primary fw-bold">0%</h2>
+            <div class="progress mb-3">
+              <div
+                id="riskBar"
+                class="progress-bar progress-bar-striped progress-bar-animated"
+              ></div>
+            </div>
+            <p><strong>Risk Level:</strong> <span id="riskLevel"></span></p>
+            <a href="reports.html" class="btn btn-outline-primary mt-3">
+              <i class="bi bi-folder2-open"></i> View All Reports
+            </a>
+          </div>
+
+          <!-- RIGHT -->
+          <div class="col-md-6">
+            <h5 class="text-center mb-3">GradCAM Interactive Viewer</h5>
+
+            <div class="img-compare-wrapper">
+              <!-- ORIGINAL IMAGE -->
+              <img id="originalImage" class="compare-img" />
+
+              <!-- GRADCAM OVERLAY -->
+              <div class="img-overlay" id="overlayContainer">
+                <img id="gradcamImage" class="compare-img" />
+              </div>
+
+              <!-- Divider -->
+              <div class="slider-line" id="sliderLine"></div>
+
+              <!-- Drag Slider -->
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                id="compareSlider"
+                class="compare-slider"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-dark text-white pt-4 pb-3 mt-5">
+      <div class="container">
+        <div class="row text-center text-md-start">
+          <!-- Brand -->
+          <div class="col-md-4 mb-3">
+            <h5 class="fw-bold">
+              <i class="bi bi-shield-check"></i> SafeSkin AI
+            </h5>
+            <p class="small">
+              AI-Powered Skin Cancer Detection System using Deep Learning
+              Ensemble and Explainable AI.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="col-md-4 mb-3">
+            <h6 class="fw-semibold">Quick Links</h6>
+            <ul class="list-unstyled small">
+              <li>
+                <a href="index.html" class="text-white text-decoration-none"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a href="reports.html" class="text-white text-decoration-none"
+                  >Reports</a
+                >
+              </li>
+              <li>
+                <a href="about.html" class="text-white text-decoration-none"
+                  >About</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Developer -->
+          <div class="col-md-4 mb-3">
+            <h6 class="fw-semibold">Developed By</h6>
+            <p class="small mb-1">Mr. Sushant Sagar & Teams</p>
+            <p class="small">AI System Architect</p>
+          </div>
+        </div>
+
+        <hr class="border-light" />
+
+        <div class="text-center small">
+          © 2026 SafeSkin AI Diagnostic System. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
